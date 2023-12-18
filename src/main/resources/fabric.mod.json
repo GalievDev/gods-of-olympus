@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "gofo",
+  "version": "${version}",
+  "name": "gods-of-olympus",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/galiev/gods-of-olympus"
+  },
+  "license": "MIT",
+  "icon": "assets/gofo/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.galiev.gofo.client.GodsOfOlympusClient"
+    ],
+    "main": [
+      "dev.galiev.gofo.GodsOfOlympus"
+    ]
+  },
+  "mixins": [
+    "gofo.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
