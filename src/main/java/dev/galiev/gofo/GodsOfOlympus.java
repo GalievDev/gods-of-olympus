@@ -1,9 +1,11 @@
 package dev.galiev.gofo;
 
 import dev.galiev.gofo.events.PlayerKilledEntity;
+import dev.galiev.gofo.events.ServerLifeCycle;
 import dev.galiev.gofo.events.custom.PlayerKilledEntityCallback;
 import dev.galiev.gofo.registry.BlocksRegistry;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -31,5 +33,6 @@ public class GodsOfOlympus implements ModInitializer {
                         .build()
         );
         PlayerKilledEntityCallback.EVENT.register(new PlayerKilledEntity());
+        ServerTickEvents.START_WORLD_TICK.register(new ServerLifeCycle());
     }
 }
