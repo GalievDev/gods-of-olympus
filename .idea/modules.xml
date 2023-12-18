@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gods-of-olympus.iml" filepath="$PROJECT_DIR$/.idea/modules/gods-of-olympus.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/gods-of-olympus.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gods-of-olympus.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/gods-of-olympus.test.iml" filepath="$PROJECT_DIR$/.idea/modules/gods-of-olympus.test.iml" />
     </modules>
