@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+//Move its to nbt tags
 public class GodsLists {
     private static final List<PlayerEntity> neptuneBlackList = new ArrayList<>();
     private static final List<PlayerEntity> jupiterBlackList = new ArrayList<>();

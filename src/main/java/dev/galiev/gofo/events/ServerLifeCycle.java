@@ -1,9 +1,9 @@
 package dev.galiev.gofo.events;
 
+import dev.galiev.gofo.registry.EffectsRegistry;
 import dev.galiev.gofo.utils.GodsLists;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
@@ -21,7 +21,7 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
         if (counter == delay) {
             if (!GodsLists.getNeptuneBlackList().isEmpty() && !punished) {
                 for (PlayerEntity player : GodsLists.getNeptuneBlackList()) {
-                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 400));
+                    player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 400));
                     punished = true;
                 }
             }
