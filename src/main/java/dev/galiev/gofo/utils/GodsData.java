@@ -33,4 +33,14 @@ public class GodsData {
         NbtCompound nbt = player.getPersistentData();
         return nbt.getShort("neptune_rep");
     }
+
+    public static boolean isNeptuneHate(IPlayerDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        return nbt.getShort("neptune_rep") <= 5;
+    }
+
+    public static boolean isNeptuneLike(IPlayerDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        return nbt.getShort("neptune_rep") >= 12;
+    }
 }
