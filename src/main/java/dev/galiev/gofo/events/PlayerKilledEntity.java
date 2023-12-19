@@ -2,7 +2,6 @@ package dev.galiev.gofo.events;
 
 import dev.galiev.gofo.events.custom.PlayerKilledEntityCallback;
 import dev.galiev.gofo.utils.GodsData;
-import dev.galiev.gofo.utils.GodsLists;
 import dev.galiev.gofo.utils.IPlayerDataSaver;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -23,8 +22,7 @@ public class PlayerKilledEntity implements PlayerKilledEntityCallback {
             GodsData.addRepNeptune((IPlayerDataSaver) player, (short) 1);
         } else if (entity instanceof HorseEntity || entity instanceof DolphinEntity || entity instanceof TurtleEntity) {
             GodsData.removeRepNeptune((IPlayerDataSaver) player, (short) 1);
-            if (!GodsLists.getNeptuneBlackList().contains(player) && GodsData.getRepNeptune((IPlayerDataSaver) player) <= 5) {
-                GodsLists.addPlayerToNeptune(player);
+            if (GodsData.getRepNeptune((IPlayerDataSaver) player) <= 5) {
                 player.sendMessage(Text.literal("Neptune dissatisfied with your actions").copy().formatted(Formatting.DARK_RED), true);
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             }

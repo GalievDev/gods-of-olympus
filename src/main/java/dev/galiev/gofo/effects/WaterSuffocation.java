@@ -24,7 +24,6 @@ public class WaterSuffocation extends StatusEffect {
                 for (BlockPos blockPos : BlockPos.iterateInSquare(pos, 1, Direction.UP, Direction.SOUTH)) {
                     if (entity.getWorld().getBlockState(blockPos).getFluidState().isIn(FluidTags.WATER)) {
                         entity.getWorld().setBlockState(blockPos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
-                        entity.getWorld().setBlockState(blockPos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
                     }
                 }
             }
