@@ -6,10 +6,10 @@ import dev.galiev.gofo.utils.IPlayerDataSaver;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.passive.DolphinEntity;
-import net.minecraft.entity.passive.HorseEntity;
-import net.minecraft.entity.passive.TurtleEntity;
+import net.minecraft.entity.passive.*;
+import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -27,7 +27,15 @@ public class PlayerKilledEntity implements PlayerKilledEntityCallback {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             }
         }
+        if (entity instanceof PhantomEntity || (entity instanceof SheepEntity && isEntityOnHills(player))) {
+            GodsData.addRepJupiter((IPlayerDataSaver) player, (short) 1);
+        } else if (entity instanceof ChickenEntity) {
+            GodsData.removeRepJupiter((IPlayerDataSaver) player, (short) 1);
+        }
         player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1f, 1f);
-        //player.sendMessage(Text.of("Neptune Reputation: " + GodsData.getRepNeptune((IPlayerDataSaver) player)), true);
+    }
+
+    private boolean isEntityOnHills(Entity entity) {
+        return entity.getWorld().getBiome(entity.getBlockPos()).isIn(BiomeTags.IS_HILL);
     }
 }
