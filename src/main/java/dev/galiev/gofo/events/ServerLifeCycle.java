@@ -16,20 +16,27 @@ import static dev.galiev.gofo.GodsOfOlympus.RANDOM;
 public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
     private static final int delay = 400;
     private static int counter = 0;
-    private static boolean punished = false;
+    private static boolean nPunished = false;
+    private static boolean jPunished = false;
 
     @Override
     public void onStartTick(ServerWorld world) {
-        int pDelay = 300;
-        if (counter == pDelay) punished = false;
+        int nDelay = 300;
+        int jDelay = 200;
+        if (counter == nDelay) nPunished = false;
+        if (counter == jDelay) jPunished = false;
         if (counter < 0) counter = 0;
 
         if (counter == delay) {
             world.getPlayers().forEach (player -> {
-               if (GodsData.isNeptuneHate((IPlayerDataSaver) player) && !punished) {
+               if (GodsData.isNeptuneHate((IPlayerDataSaver) player) && !nPunished) {
                    //player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 350));
                    spawnGuardians(world, player);
-                   punished = true;
+                   nPunished = true;
+               }
+               if (GodsData.isJupiterHate((IPlayerDataSaver) player) && !jPunished) {
+                   createLighthing(player);
+                   jPunished = true;
                }
             });
             counter = 0;
@@ -41,6 +48,15 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
         Random random = Random.create();
         for (BlockPos pos : BlockPos.iterateRandomly(random, rand, player.getBlockPos(), 5)) {
             EntityType.GUARDIAN.spawn((ServerWorld) world, pos, SpawnReason.EVENT);
+        }
+    }
+
+    private void createLighthing(PlayerEntity player) {
+        int rand = RANDOM.nextInt(2, 5);
+        Random random = Random.create();
+        EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), player.getBlockPos(), SpawnReason.EVENT);
+        for (BlockPos pos : BlockPos.iterateRandomly(random, rand, player.getBlockPos(), 5)) {
+            EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), pos, SpawnReason.EVENT);
         }
     }
 }
