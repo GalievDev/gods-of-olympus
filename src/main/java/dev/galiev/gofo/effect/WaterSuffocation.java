@@ -1,4 +1,4 @@
-package dev.galiev.gofo.effects;
+package dev.galiev.gofo.effect;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

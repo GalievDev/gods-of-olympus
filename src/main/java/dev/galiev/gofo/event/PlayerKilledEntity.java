@@ -1,6 +1,6 @@
-package dev.galiev.gofo.events;
+package dev.galiev.gofo.event;
 
-import dev.galiev.gofo.events.custom.PlayerKilledEntityCallback;
+import dev.galiev.gofo.event.custom.PlayerKilledEntityCallback;
 import dev.galiev.gofo.utils.GodsData;
 import dev.galiev.gofo.utils.IPlayerDataSaver;
 import net.minecraft.entity.Entity;

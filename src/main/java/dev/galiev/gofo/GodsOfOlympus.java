@@ -1,8 +1,8 @@
 package dev.galiev.gofo;
 
-import dev.galiev.gofo.events.PlayerKilledEntity;
-import dev.galiev.gofo.events.ServerLifeCycle;
-import dev.galiev.gofo.events.custom.PlayerKilledEntityCallback;
+import dev.galiev.gofo.event.PlayerKilledEntity;
+import dev.galiev.gofo.event.ServerLifeCycle;
+import dev.galiev.gofo.event.custom.PlayerKilledEntityCallback;
 import dev.galiev.gofo.registry.BlocksRegistry;
 import dev.galiev.gofo.registry.EffectsRegistry;
 import net.fabricmc.api.ModInitializer;

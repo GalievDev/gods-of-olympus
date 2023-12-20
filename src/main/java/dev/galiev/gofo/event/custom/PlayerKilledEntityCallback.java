@@ -1,4 +1,4 @@
-package dev.galiev.gofo.events.custom;
+package dev.galiev.gofo.event.custom;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;

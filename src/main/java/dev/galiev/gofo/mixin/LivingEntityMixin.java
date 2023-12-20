@@ -1,6 +1,6 @@
 package dev.galiev.gofo.mixin;
 
-import dev.galiev.gofo.events.custom.PlayerKilledEntityCallback;
+import dev.galiev.gofo.event.custom.PlayerKilledEntityCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

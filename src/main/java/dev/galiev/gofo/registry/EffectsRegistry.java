@@ -1,7 +1,7 @@
 package dev.galiev.gofo.registry;
 
 import dev.galiev.gofo.GodsOfOlympus;
-import dev.galiev.gofo.effects.WaterSuffocation;
+import dev.galiev.gofo.effect.WaterSuffocation;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
