@@ -3,11 +3,12 @@ package dev.galiev.gofo;
 import dev.galiev.gofo.event.PlayerKilledEntity;
 import dev.galiev.gofo.event.ServerLifeCycle;
 import dev.galiev.gofo.event.custom.PlayerKilledEntityCallback;
-import dev.galiev.gofo.registry.BlocksRegistry;
 import dev.galiev.gofo.registry.EffectsRegistry;
+import dev.galiev.gofo.registry.ItemsRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -29,11 +30,12 @@ public class GodsOfOlympus implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ItemsRegistry.registerModItems();
         EffectsRegistry.registerEffects();
         Registry.register(
                 Registries.ITEM_GROUP, GODS_OF_OLYMPUS,
                 FabricItemGroup.builder()
-                        .icon(() -> new ItemStack(BlocksRegistry.NEPTUNE_STATUE))
+                        .icon(() -> new ItemStack(Blocks.ACACIA_BUTTON))
                         .displayName(Text.of("Gods Of Olympus"))
                         .build()
         );
