@@ -19,9 +19,12 @@ import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Random;
+
 public class GodsOfOlympus implements ModInitializer {
     public static final String MOD_ID = "gofo";
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final Random RANDOM = new Random(System.currentTimeMillis());
     public static RegistryKey<ItemGroup> GODS_OF_OLYMPUS = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID));
 
     @Override
