@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -101,18 +102,18 @@ public class GodsData {
         if (getRepNeptune((IPlayerDataSaver) player) == 5) {
             player.sendMessage(Text.literal("Neptune dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
-            player.playSound(SoundEvents.ENTITY_ENDER_DRAGON_HURT, 1f, 1f);
+            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
         }
         if (getRepNeptune((IPlayerDataSaver) player) == 12) {
             player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.AQUA), true);
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 500));
-            player.playSound(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1000));
+            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
         }
         if (getRepJupiter((IPlayerDataSaver) player) == 5) {
             player.sendMessage(Text.literal("Jupiter dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), player.getBlockPos(), SpawnReason.EVENT);
-            player.playSound(SoundEvents.ENTITY_ENDER_DRAGON_HURT, 1f, 1f);
+            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
         }
     }
 }
