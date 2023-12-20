@@ -115,5 +115,10 @@ public class GodsData {
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), player.getBlockPos(), SpawnReason.EVENT);
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
         }
+        if (getRepJupiter((IPlayerDataSaver) player) == 12) {
+            player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.YELLOW), true);
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 1000));
+            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
+        }
     }
 }
