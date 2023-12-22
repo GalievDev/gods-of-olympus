@@ -31,7 +31,7 @@ public class GodsOfOlympus implements ModInitializer {
     @Override
     public void onInitialize() {
         ItemsRegistry.registerModItems();
-        EffectsRegistry.registerEffects();
+        EffectsRegistry.registerStatusEffect();
         Registry.register(
                 Registries.ITEM_GROUP, GODS_OF_OLYMPUS,
                 FabricItemGroup.builder()
