@@ -22,14 +22,4 @@ public class SkySword extends SwordItem {
         }
         return super.postHit(stack, target, attacker);
     }
-
-/*    private void createLighthing(LivingEntity entity) {
-        if (!entity.isAlive()) {
-            createLighthing(entity);
-        } else {
-            BlockPos.Mutable mutable = (BlockPos.Mutable) entity.getBlockPos();
-            EntityType.LIGHTNING_BOLT.spawn((ServerWorld) entity.getWorld(), mutable, SpawnReason.EVENT);
-            counter = 0;
-        }
-    }*/
 }
