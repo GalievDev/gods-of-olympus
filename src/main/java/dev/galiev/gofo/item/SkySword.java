@@ -1,6 +1,7 @@
 package dev.galiev.gofo.item;
 
 import dev.galiev.gofo.registry.EffectsRegistry;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.Monster;
@@ -12,7 +13,7 @@ import net.minecraft.item.ToolMaterials;
 
 public class SkySword extends SwordItem {
     public SkySword() {
-        super(ToolMaterials.NETHERITE, 5, 0.6f, new Settings().fireproof());
+        super(ToolMaterials.NETHERITE, 5, 0.6f, new FabricItemSettings().fireproof().maxDamage(999999));
     }
 
     @Override
@@ -24,5 +25,10 @@ public class SkySword extends SwordItem {
             target.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WRATH_OF_HEAVEN, 75, 1));
         }
         return super.postHit(stack, target, attacker);
+    }
+
+    @Override
+    public int getEnchantability() {
+        return 0;
     }
 }

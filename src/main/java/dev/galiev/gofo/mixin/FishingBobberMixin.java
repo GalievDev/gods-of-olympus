@@ -1,7 +1,6 @@
 package dev.galiev.gofo.mixin;
 
 import dev.galiev.gofo.utils.GodsData;
-import dev.galiev.gofo.utils.IPlayerDataSaver;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
@@ -22,7 +21,7 @@ public abstract class FishingBobberMixin {
     @ModifyVariable(method = "use", at = @At(value = "STORE"), ordinal = 0)
     private List<ItemStack> changeCatch(List<ItemStack> list) {
         var player = this.getPlayerOwner();
-        if (GodsData.isNeptuneHate((IPlayerDataSaver) player)) {
+        if (GodsData.isNeptuneHate(player)) {
             ObjectArrayList<ItemStack> newList = new ObjectArrayList<>();
             newList.add(new ItemStack(Items.PUFFERFISH));
             return newList;

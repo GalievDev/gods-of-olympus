@@ -1,7 +1,6 @@
 package dev.galiev.gofo.event;
 
 import dev.galiev.gofo.utils.GodsData;
-import dev.galiev.gofo.utils.IPlayerDataSaver;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -30,12 +29,12 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
 
         world.getPlayers().forEach(player -> {
             if (counter == delay) {
-                if (GodsData.isNeptuneHate((IPlayerDataSaver) player) && !nPunished) {
+                if (GodsData.isNeptuneHate(player) && !nPunished) {
                     //player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 350));
                     spawnGuardians(world, player);
                     nPunished = true;
                 }
-                if (GodsData.isJupiterHate((IPlayerDataSaver) player) && !jPunished) {
+                if (GodsData.isJupiterHate(player) && !jPunished) {
                     createLighthing(player);
                     setTime(world);
                     jPunished = true;

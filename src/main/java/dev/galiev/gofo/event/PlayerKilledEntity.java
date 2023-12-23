@@ -2,7 +2,6 @@ package dev.galiev.gofo.event;
 
 import dev.galiev.gofo.event.custom.PlayerKilledEntityCallback;
 import dev.galiev.gofo.utils.GodsData;
-import dev.galiev.gofo.utils.IPlayerDataSaver;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.entity.mob.ZombieEntity;
@@ -16,18 +15,18 @@ public class PlayerKilledEntity implements PlayerKilledEntityCallback {
     @Override
     public void killEntity(ServerPlayerEntity player, Entity entity) {
         if (entity instanceof ZombieEntity) {
-            GodsData.addRepNeptune((IPlayerDataSaver) player, (short) 1);
+            GodsData.addRepNeptune(player, (short) 1);
         } else if (entity instanceof HorseEntity || entity instanceof DolphinEntity || entity instanceof TurtleEntity) {
-            GodsData.removeRepNeptune((IPlayerDataSaver) player, (short) 1);
+            GodsData.removeRepNeptune(player, (short) 1);
         }
 
         if (entity instanceof PhantomEntity || (entity instanceof SheepEntity && isEntityOnHills(player)) || entity instanceof RaiderEntity) {
-            GodsData.addRepJupiter((IPlayerDataSaver) player, (short) 1);
+            GodsData.addRepJupiter(player, (short) 1);
         } else if (entity instanceof ChickenEntity) {
-            GodsData.removeRepJupiter((IPlayerDataSaver) player, (short) 1);
+            GodsData.removeRepJupiter(player, (short) 1);
         }
 
-        player.sendMessage(Text.of("Reputation: " + GodsData.getRepNeptune((IPlayerDataSaver) player)));
+        player.sendMessage(Text.of("Reputation: " + GodsData.getRepNeptune(player)));
     }
 
     private boolean isEntityOnHills(Entity entity) {
