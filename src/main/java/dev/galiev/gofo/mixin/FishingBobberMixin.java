@@ -27,7 +27,7 @@ public abstract class FishingBobberMixin {
             newList.add(new ItemStack(Items.PUFFERFISH));
             return newList;
         } else {
-        return list;
+            return list;
         }
     }
 }
