@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class EffectsRegistry {
     public static StatusEffect WATER_SUFFOCATION = new WaterSuffocation(StatusEffectCategory.HARMFUL, 3124687);
-    public static StatusEffect WRATH_OF_HEAVEN = new WrathOfHeaven(StatusEffectCategory.HARMFUL, 3433423);
+    public static StatusEffect WRATH_OF_HEAVEN = new WrathOfHeaven(StatusEffectCategory.HARMFUL, -2249897);
 
     public static void registerStatusEffect() {
         Registry.register(Registries.STATUS_EFFECT, new Identifier(GodsOfOlympus.MOD_ID, "water_suffocation"), WATER_SUFFOCATION);

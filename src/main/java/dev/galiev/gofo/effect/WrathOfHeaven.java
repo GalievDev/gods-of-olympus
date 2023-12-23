@@ -21,7 +21,7 @@ public class WrathOfHeaven extends StatusEffect {
                 double y = entity.getY();
                 double z = entity.getZ();
 
-                entity.setPosition(x, y, z);
+                entity.teleport(x, y, z);
                 EntityType.LIGHTNING_BOLT.spawn((ServerWorld) entity.getWorld(), entity.getBlockPos(), SpawnReason.EVENT);
             }
         }
