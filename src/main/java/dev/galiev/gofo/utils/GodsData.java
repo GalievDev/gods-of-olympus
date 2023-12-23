@@ -1,7 +1,5 @@
 package dev.galiev.gofo.utils;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -24,6 +22,12 @@ public class GodsData {
             rep += amount;
         }
 
+        if (rep == 12) {
+            ((PlayerEntity) player).sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.AQUA), true);
+            ((PlayerEntity) player).addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1000));
+            ((PlayerEntity) player).getWorld().playSound(null, ((PlayerEntity) player).getX(), ((PlayerEntity) player).getY(), ((PlayerEntity) player).getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
+        }
+
         nbt.putShort("neptune_rep", rep);
         return rep;
     }
@@ -35,6 +39,12 @@ public class GodsData {
             rep = 15;
         } else {
             rep += amount;
+        }
+
+        if (rep == 12) {
+            ((PlayerEntity) player).sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.YELLOW), true);
+            ((PlayerEntity) player).addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 1000));
+            ((PlayerEntity) player).getWorld().playSound(null, ((PlayerEntity) player).getX(), ((PlayerEntity) player).getY(), ((PlayerEntity) player).getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
         }
 
         nbt.putShort("jupiter_rep", rep);
@@ -50,6 +60,12 @@ public class GodsData {
             rep -= amount;
         }
 
+        if (rep == 5) {
+            ((PlayerEntity) player).sendMessage(Text.literal("Neptune dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
+            ((PlayerEntity) player).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
+            ((PlayerEntity) player).getWorld().playSound(null, ((PlayerEntity) player).getX(), ((PlayerEntity) player).getY(), ((PlayerEntity) player).getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
+        }
+
         nbt.putShort("neptune_rep", rep);
         return rep;
     }
@@ -61,6 +77,13 @@ public class GodsData {
             rep = 0;
         } else {
             rep -= amount;
+        }
+
+        if (rep == 5) {
+            ((PlayerEntity) player).sendMessage(Text.literal("Jupiter dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
+            ((PlayerEntity) player).addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
+            EntityType.LIGHTNING_BOLT.spawn((ServerWorld) ((PlayerEntity) player).getWorld(), ((PlayerEntity) player).getBlockPos(), SpawnReason.EVENT);
+            ((PlayerEntity) player).getWorld().playSound(null, ((PlayerEntity) player).getX(), ((PlayerEntity) player).getY(), ((PlayerEntity) player).getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
         }
 
         nbt.putShort("jupiter_rep", rep);
@@ -95,30 +118,5 @@ public class GodsData {
     public static boolean isJupiterLike(IPlayerDataSaver player) {
         NbtCompound nbt = player.getPersistentData();
         return nbt.getShort("jupiter_rep") >= 12;
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static void info(PlayerEntity player) {
-        if (getRepNeptune((IPlayerDataSaver) player) == 5) {
-            player.sendMessage(Text.literal("Neptune dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
-            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
-        }
-        if (getRepNeptune((IPlayerDataSaver) player) == 12) {
-            player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.AQUA), true);
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1000));
-            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
-        }
-        if (getRepJupiter((IPlayerDataSaver) player) == 5) {
-            player.sendMessage(Text.literal("Jupiter dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
-            EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), player.getBlockPos(), SpawnReason.EVENT);
-            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
-        }
-        if (getRepJupiter((IPlayerDataSaver) player) == 12) {
-            player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.YELLOW), true);
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 1000));
-            player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
-        }
     }
 }

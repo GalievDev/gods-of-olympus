@@ -28,20 +28,21 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
         if (counter == jDelay) jPunished = false;
         if (counter < 0) counter = 0;
 
-        if (counter == delay) {
-            world.getPlayers().forEach (player -> {
-               if (GodsData.isNeptuneHate((IPlayerDataSaver) player) && !nPunished) {
-                   //player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 350));
-                   spawnGuardians(world, player);
-                   nPunished = true;
-               }
-               if (GodsData.isJupiterHate((IPlayerDataSaver) player) && !jPunished) {
-                   createLighthing(player);
-                   jPunished = true;
-               }
-            });
-            counter = 0;
-        } else counter++;
+        world.getPlayers().forEach(player -> {
+            if (counter == delay) {
+                if (GodsData.isNeptuneHate((IPlayerDataSaver) player) && !nPunished) {
+                    //player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 350));
+                    spawnGuardians(world, player);
+                    nPunished = true;
+                }
+                if (GodsData.isJupiterHate((IPlayerDataSaver) player) && !jPunished) {
+                    createLighthing(player);
+                    setTime(world);
+                    jPunished = true;
+                }
+                counter = 0;
+            } else counter++;
+        });
     }
 
     private void spawnGuardians(World world, PlayerEntity player) {
@@ -57,5 +58,11 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
         for (BlockPos pos : BlockPos.iterateRandomly(random, rand, player.getBlockPos(), 5)) {
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), pos, SpawnReason.EVENT);
         }
+    }
+
+    private void setTime(ServerWorld world) {
+        if (world.isClient) return;
+        world.setTimeOfDay(13000);
+        world.setWeather(0, 10000, true, true);
     }
 }
