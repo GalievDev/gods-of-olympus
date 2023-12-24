@@ -13,10 +13,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 
+import static dev.galiev.gofo.GodsOfOlympus.MOD_ID;
+
 public class BlocksRegistry {
     
-    public static final Block NEPTUNE_STATUE = registerBlock("neptune_statue",
-            new Block(FabricBlockSettings.create()), GodsOfOlympus.GODS_OF_OLYMPUS);
+    public static final Block JUPITER_STATUE = registerBlock("jupiter_statue",
+            new Block(FabricBlockSettings.create().strength(-1)), GodsOfOlympus.GODS_OF_OLYMPUS);
 
     private static Block registerBlock(String name, Block block, RegistryKey<ItemGroup> group) {
         registerBlockItem(name, block, group);
@@ -28,5 +30,9 @@ public class BlocksRegistry {
                 new BlockItem(block, new FabricItemSettings()));
         ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
         return item;
+    }
+
+    public static void registerModBlocks() {
+        GodsOfOlympus.LOGGER.info("Registering Mod Blocks for " + MOD_ID);
     }
 }
