@@ -1,9 +1,9 @@
 package dev.galiev.gofo.registry;
 
 import dev.galiev.gofo.GodsOfOlympus;
+import dev.galiev.gofo.block.JupiterStatue;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -18,7 +18,7 @@ import static dev.galiev.gofo.GodsOfOlympus.MOD_ID;
 public class BlocksRegistry {
     
     public static final Block JUPITER_STATUE = registerBlock("jupiter_statue",
-            new Block(FabricBlockSettings.create().strength(-1)), GodsOfOlympus.GODS_OF_OLYMPUS);
+            new JupiterStatue(), GodsOfOlympus.GODS_OF_OLYMPUS);
 
     private static Block registerBlock(String name, Block block, RegistryKey<ItemGroup> group) {
         registerBlockItem(name, block, group);
