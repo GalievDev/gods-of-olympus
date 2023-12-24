@@ -5,6 +5,7 @@ import dev.galiev.gofo.event.ServerLifeCycle;
 import dev.galiev.gofo.event.custom.PlayerKilledEntityCallback;
 import dev.galiev.gofo.registry.BlocksRegistry;
 import dev.galiev.gofo.registry.EffectsRegistry;
+import dev.galiev.gofo.registry.EntitiesRegistry;
 import dev.galiev.gofo.registry.ItemsRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -34,6 +35,7 @@ public class GodsOfOlympus implements ModInitializer {
         ItemsRegistry.registerModItems();
         BlocksRegistry.registerModBlocks();
         EffectsRegistry.registerStatusEffect();
+        EntitiesRegistry.registerModEntities();
         Registry.register(
                 Registries.ITEM_GROUP, GODS_OF_OLYMPUS,
                 FabricItemGroup.builder()

@@ -3,6 +3,7 @@ package dev.galiev.gofo.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.galiev.gofo.GodsOfOlympus;
+import dev.galiev.gofo.entity.NeptuneTridentEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -13,7 +14,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Vanishable;
@@ -64,7 +64,7 @@ public class NeptuneTrident extends Item implements Vanishable {
                 if (!world.isClient) {
                     GodsOfOlympus.LOGGER.info("is not client");
                     stack.damage(1, user, p -> p.sendToolBreakStatus(user.getActiveHand()));
-                    TridentEntity tridentEntity = new TridentEntity(world, user, stack);
+                    NeptuneTridentEntity tridentEntity = new NeptuneTridentEntity(user, world, stack);
                     tridentEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 2.5f + (float) 0 * 0.5f, 1.0f);
                     if (((PlayerEntity) user).getAbilities().creativeMode) {
                         tridentEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
