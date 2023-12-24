@@ -59,23 +59,7 @@ public class NeptuneTrident extends Item implements Vanishable {
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (user instanceof PlayerEntity) {
-            if (user.isSneaking()) {
-                float f = user.getYaw();
-                float g = user.getPitch();
-                float h = -MathHelper.sin(f * ((float) Math.PI / 180)) * MathHelper.cos(g * ((float) Math.PI / 180));
-                float k = -MathHelper.sin(g * ((float) Math.PI / 180));
-                float l = MathHelper.cos(f * ((float) Math.PI / 180)) * MathHelper.cos(g * ((float) Math.PI / 180));
-                float m = MathHelper.sqrt(h * h + k * k + l * l);
-                float n = 5.0f * ((1.0f + (float) 2) / 4.0f);
-                user.addVelocity(h *= n / m, k *= n / m, l *= n / m);
-                ((PlayerEntity) user).useRiptide(20);
-                if (user.isOnGround()) {
-                    float o = 1.1999999f;
-                    user.move(MovementType.SELF, new Vec3d(0.0, o, 0.0));
-                }
-                SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_RIPTIDE_2;
-                world.playSoundFromEntity(null, user, soundEvent, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            } else {
+            if (!user.isSneaking()) {
                 GodsOfOlympus.LOGGER.info("is not sneaking");
                 if (!world.isClient) {
                     GodsOfOlympus.LOGGER.info("is not client");
@@ -92,6 +76,22 @@ public class NeptuneTrident extends Item implements Vanishable {
                     }
                 }
                 ((PlayerEntity) user).incrementStat(Stats.USED.getOrCreateStat(this));
+            } else {
+                float f = user.getYaw();
+                float g = user.getPitch();
+                float h = -MathHelper.sin(f * ((float) Math.PI / 180)) * MathHelper.cos(g * ((float) Math.PI / 180));
+                float k = -MathHelper.sin(g * ((float) Math.PI / 180));
+                float l = MathHelper.cos(f * ((float) Math.PI / 180)) * MathHelper.cos(g * ((float) Math.PI / 180));
+                float m = MathHelper.sqrt(h * h + k * k + l * l);
+                float n = 5.0f * ((1.0f + (float) 2) / 4.0f);
+                user.addVelocity(h *= n / m, k *= n / m, l *= n / m);
+                ((PlayerEntity) user).useRiptide(20);
+                if (user.isOnGround()) {
+                    float o = 1.1999999f;
+                    user.move(MovementType.SELF, new Vec3d(0.0, o, 0.0));
+                }
+                SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_RIPTIDE_2;
+                world.playSoundFromEntity(null, user, soundEvent, SoundCategory.PLAYERS, 1.0f, 1.0f);
             }
         }
     }
@@ -99,11 +99,13 @@ public class NeptuneTrident extends Item implements Vanishable {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        if (user.isSneaking()) {
+        if (!user.isSneaking()) {
+            user.setCurrentHand(hand);
+            return TypedActionResult.consume(stack);
+        } else {
             user.setCurrentHand(hand);
             return TypedActionResult.consume(stack);
         }
-        return TypedActionResult.fail(stack);
     }
 
     @Override
