@@ -16,7 +16,7 @@ public class PlayerKilledEntity implements PlayerKilledEntityCallback {
     @Override
     public void killEntity(ServerPlayerEntity player, Entity entity) {
         int chance = RANDOM.nextInt(1, 100);
-        if (chance <= 29) {
+        if (chance <= 9) {
             if (entity instanceof ZombieEntity) {
                 GodsData.addRepNeptune(player, (short) 1);
             } else if (entity instanceof HorseEntity || entity instanceof DolphinEntity || entity instanceof TurtleEntity) {
