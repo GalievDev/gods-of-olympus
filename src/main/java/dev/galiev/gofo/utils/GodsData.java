@@ -1,5 +1,6 @@
 package dev.galiev.gofo.utils;
 
+import dev.galiev.gofo.registry.EffectsRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -26,6 +27,8 @@ public class GodsData {
             player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.AQUA), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1000));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
+        } else {
+            player.sendMessage(Text.of("Respect from Neptune: " + rep), true);
         }
 
         nbt.putShort("neptune_rep", rep);
@@ -45,6 +48,8 @@ public class GodsData {
             player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.YELLOW), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 1000));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
+        }  else {
+            player.sendMessage(Text.of("Respect from Jupiter: " + rep), true);
         }
 
         nbt.putShort("jupiter_rep", rep);
@@ -63,7 +68,10 @@ public class GodsData {
         if (rep == 5) {
             player.sendMessage(Text.literal("Neptune dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
+            player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 60));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
+        } else {
+            player.sendMessage(Text.of("Respect from Neptune: " + rep), true);
         }
 
         nbt.putShort("neptune_rep", rep);
@@ -84,6 +92,8 @@ public class GodsData {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), player.getBlockPos(), SpawnReason.EVENT);
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
+        } else {
+            player.sendMessage(Text.of("Respect from Jupiter: " + rep), true);
         }
 
         nbt.putShort("jupiter_rep", rep);

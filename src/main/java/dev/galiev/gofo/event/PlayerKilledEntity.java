@@ -9,7 +9,6 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 
 public class PlayerKilledEntity implements PlayerKilledEntityCallback {
     @Override
@@ -22,11 +21,9 @@ public class PlayerKilledEntity implements PlayerKilledEntityCallback {
 
         if (entity instanceof PhantomEntity || (entity instanceof SheepEntity && isEntityOnHills(player)) || entity instanceof RaiderEntity) {
             GodsData.addRepJupiter(player, (short) 1);
-        } else if (entity instanceof ChickenEntity) {
+        } else if (entity instanceof ChickenEntity || entity instanceof VillagerEntity || entity instanceof IronGolemEntity) {
             GodsData.removeRepJupiter(player, (short) 1);
         }
-
-        player.sendMessage(Text.of("Reputation: " + GodsData.getRepNeptune(player)));
     }
 
     private boolean isEntityOnHills(Entity entity) {
