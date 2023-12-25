@@ -1,9 +1,11 @@
 package dev.galiev.gofo.event;
 
+import dev.galiev.gofo.registry.EffectsRegistry;
 import dev.galiev.gofo.utils.GodsData;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -29,14 +31,23 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
 
         world.getPlayers().forEach(player -> {
             if (counter == delay) {
+                int chance = RANDOM.nextInt(1, 100);
                 if (GodsData.isNeptuneHate(player) && !nPunished) {
-                    //player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 350));
-                    spawnGuardians(world, player);
+                    if (chance <= 49) {
+                        player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 250));
+                    } else {
+                        spawnGuardians(world, player);
+                    }
                     nPunished = true;
                 }
                 if (GodsData.isJupiterHate(player) && !jPunished) {
-                    createLighthing(player);
-                    setTime(world);
+                    if (chance <= 32) {
+                        createLighthing(player);
+                    } else if (chance <= 64) {
+                        setTime(world);
+                    } else {
+                        player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WRATH_OF_HEAVEN, 50));
+                    }
                     jPunished = true;
                 }
                 counter = 0;
@@ -45,7 +56,7 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
     }
 
     private void spawnGuardians(World world, PlayerEntity player) {
-        int rand = RANDOM.nextInt(1, 10);
+        int rand = RANDOM.nextInt(5, 10);
         for (BlockPos pos : BlockPos.iterateRandomly(random, rand, player.getBlockPos(), 5)) {
             EntityType.GUARDIAN.spawn((ServerWorld) world, pos, SpawnReason.EVENT);
         }

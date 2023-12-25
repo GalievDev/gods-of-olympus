@@ -10,19 +10,24 @@ import net.minecraft.entity.raid.RaiderEntity;
 import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.server.network.ServerPlayerEntity;
 
+import static dev.galiev.gofo.GodsOfOlympus.RANDOM;
+
 public class PlayerKilledEntity implements PlayerKilledEntityCallback {
     @Override
     public void killEntity(ServerPlayerEntity player, Entity entity) {
-        if (entity instanceof ZombieEntity) {
-            GodsData.addRepNeptune(player, (short) 1);
-        } else if (entity instanceof HorseEntity || entity instanceof DolphinEntity || entity instanceof TurtleEntity) {
-            GodsData.removeRepNeptune(player, (short) 1);
-        }
+        int chance = RANDOM.nextInt(1, 100);
+        if (chance <= 29) {
+            if (entity instanceof ZombieEntity) {
+                GodsData.addRepNeptune(player, (short) 1);
+            } else if (entity instanceof HorseEntity || entity instanceof DolphinEntity || entity instanceof TurtleEntity) {
+                GodsData.removeRepNeptune(player, (short) 1);
+            }
 
-        if (entity instanceof PhantomEntity || (entity instanceof SheepEntity && isEntityOnHills(player)) || entity instanceof RaiderEntity) {
-            GodsData.addRepJupiter(player, (short) 1);
-        } else if (entity instanceof ChickenEntity || entity instanceof VillagerEntity || entity instanceof IronGolemEntity) {
-            GodsData.removeRepJupiter(player, (short) 1);
+            if (entity instanceof PhantomEntity || (entity instanceof SheepEntity && isEntityOnHills(player)) || entity instanceof RaiderEntity) {
+                GodsData.addRepJupiter(player, (short) 1);
+            } else if (entity instanceof ChickenEntity || entity instanceof VillagerEntity || entity instanceof IronGolemEntity) {
+                GodsData.removeRepJupiter(player, (short) 1);
+            }
         }
     }
 
