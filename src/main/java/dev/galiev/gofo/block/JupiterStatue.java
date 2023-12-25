@@ -17,15 +17,17 @@ import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
 public class JupiterStatue extends Block {
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public JupiterStatue() {
         super(FabricBlockSettings.create().strength(-1).nonOpaque());
         stateManager.getDefaultState().with(FACING, Direction.NORTH);
     }
 
+    private static final VoxelShape SHAPE = Block.createCuboidShape(0, -16, 0, 16, 32, 16);
+
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return Shape.getJupiterStatueShape();
+        return SHAPE;
     }
 
     @Nullable

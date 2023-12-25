@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "gofo:block/jupiter_statue"
-    }
+    "facing=north": { "model": "gofo:block/jupiter_statue" },
+    "facing=east": { "model": "gofo:block/jupiter_statue", "y": 90 },
+    "facing=south": { "model": "gofo:block/jupiter_statue", "y": 180 },
+    "facing=west": { "model": "gofo:block/jupiter_statue", "y": 270 }
   }
 }
