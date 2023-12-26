@@ -16,8 +16,8 @@ public class PlayerManagerMixin {
     @Inject(at = @At(value = "TAIL"), method = "onPlayerConnect")
     private void onPlayerJoin(ClientConnection connection, ServerPlayerEntity player, ConnectedClientData clientData, CallbackInfo ci) {
         if (player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(Stats.LEAVE_GAME)) < 1) {
-            GodsData.addRepJupiter(player, (short) 7);
-            GodsData.addRepNeptune(player, (short) 7);
+            GodsData.addRepPoseidon(player, (short) 7);
+            GodsData.addRepZeus(player, (short) 7);
         }
     }
 }

@@ -16,9 +16,9 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
-public class JupiterStatue extends Block {
+public class ZeusStatue extends Block {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public JupiterStatue() {
+    public ZeusStatue() {
         super(FabricBlockSettings.create().strength(-1).nonOpaque());
         stateManager.getDefaultState().with(FACING, Direction.NORTH);
     }

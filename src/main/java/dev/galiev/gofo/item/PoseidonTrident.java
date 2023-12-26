@@ -3,7 +3,7 @@ package dev.galiev.gofo.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.galiev.gofo.GodsOfOlympus;
-import dev.galiev.gofo.entity.NeptuneTridentEntity;
+import dev.galiev.gofo.entity.PoseidonTridentEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -29,11 +29,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class NeptuneTrident extends Item implements Vanishable {
+public class PoseidonTrident extends Item implements Vanishable {
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
     public static final float ATTACK_DAMAGE = 10.0f;
 
-    public NeptuneTrident() {
+    public PoseidonTrident() {
         super(new FabricItemSettings().maxDamage(999999).fireproof());
         ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", ATTACK_DAMAGE, EntityAttributeModifier.Operation.ADDITION));
@@ -64,7 +64,7 @@ public class NeptuneTrident extends Item implements Vanishable {
                 if (!world.isClient) {
                     GodsOfOlympus.LOGGER.info("is not client");
                     stack.damage(1, user, p -> p.sendToolBreakStatus(user.getActiveHand()));
-                    NeptuneTridentEntity tridentEntity = new NeptuneTridentEntity(user, world, stack);
+                    PoseidonTridentEntity tridentEntity = new PoseidonTridentEntity(user, world, stack);
                     tridentEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 2.5f + (float) 0 * 0.5f, 1.0f);
                     if (((PlayerEntity) user).getAbilities().creativeMode) {
                         tridentEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;

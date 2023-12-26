@@ -1,7 +1,7 @@
 package dev.galiev.gofo.registry;
 
 import dev.galiev.gofo.GodsOfOlympus;
-import dev.galiev.gofo.entity.NeptuneTridentEntity;
+import dev.galiev.gofo.entity.PoseidonTridentEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -13,9 +13,9 @@ import net.minecraft.util.Identifier;
 import static dev.galiev.gofo.GodsOfOlympus.MOD_ID;
 
 public class EntitiesRegistry {
-    public static final EntityType<? extends NeptuneTridentEntity> NEPTUNE_TRIDENT_ENTITY = Registry.register(Registries.ENTITY_TYPE,
-            new Identifier(MOD_ID, "neptune_trident_entity"),
-            FabricEntityTypeBuilder.<NeptuneTridentEntity>create(SpawnGroup.MISC, NeptuneTridentEntity::new)
+    public static final EntityType<? extends PoseidonTridentEntity> POSEIDON_TRIDENT_ENTITY = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(MOD_ID, "poseidon_trident_entity"),
+            FabricEntityTypeBuilder.<PoseidonTridentEntity>create(SpawnGroup.MISC, PoseidonTridentEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5F, 0.5F))
                     .build());
 

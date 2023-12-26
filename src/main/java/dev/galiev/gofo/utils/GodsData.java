@@ -14,9 +14,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
 public class GodsData {
-    public static short addRepNeptune(PlayerEntity player, short amount) {
+    public static short addRepPoseidon(PlayerEntity player, short amount) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        short rep = nbt.getShort("neptune_rep");
+        short rep = nbt.getShort("poseidon_rep");
         if (rep + amount >= 15) {
             rep = 15;
         } else {
@@ -24,20 +24,20 @@ public class GodsData {
         }
 
         if (rep == 12) {
-            player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.AQUA), true);
+            player.sendMessage(Text.literal("Poseidon respects your actions").formatted(Formatting.AQUA), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1000));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
         } else {
-            player.sendMessage(Text.of("Respect from Neptune: " + rep), true);
+            player.sendMessage(Text.of("Poseidon from Neptune: " + rep), true);
         }
 
-        nbt.putShort("neptune_rep", rep);
+        nbt.putShort("poseidon_rep", rep);
         return rep;
     }
 
-    public static short addRepJupiter(PlayerEntity player, short amount) {
+    public static short addRepZeus(PlayerEntity player, short amount) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        short rep = nbt.getShort("jupiter_rep");
+        short rep = nbt.getShort("zeus_rep");
         if (rep + amount >= 15) {
             rep = 15;
         } else {
@@ -45,20 +45,20 @@ public class GodsData {
         }
 
         if (rep == 12) {
-            player.sendMessage(Text.literal("Neptune respects your actions").formatted(Formatting.YELLOW), true);
+            player.sendMessage(Text.literal("Zeus respects your actions").formatted(Formatting.YELLOW), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 1000));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
         }  else {
-            player.sendMessage(Text.of("Respect from Jupiter: " + rep), true);
+            player.sendMessage(Text.of("Respect from Zeus: " + rep), true);
         }
 
-        nbt.putShort("jupiter_rep", rep);
+        nbt.putShort("zeus_rep", rep);
         return rep;
     }
 
-    public static short removeRepNeptune(PlayerEntity player, short amount) {
+    public static short removeRepPoseidon(PlayerEntity player, short amount) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        short rep = nbt.getShort("neptune_rep");
+        short rep = nbt.getShort("poseidon_rep");
         if (rep - amount < 0) {
             rep = 0;
         } else {
@@ -66,21 +66,21 @@ public class GodsData {
         }
 
         if (rep == 5) {
-            player.sendMessage(Text.literal("Neptune dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
+            player.sendMessage(Text.literal("Poseidon dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 60));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
         } else {
-            player.sendMessage(Text.of("Respect from Neptune: " + rep), true);
+            player.sendMessage(Text.of("Respect from Poseidon: " + rep), true);
         }
 
-        nbt.putShort("neptune_rep", rep);
+        nbt.putShort("poseidon_rep", rep);
         return rep;
     }
 
-    public static short removeRepJupiter(PlayerEntity player, short amount) {
+    public static short removeRepZeus(PlayerEntity player, short amount) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        short rep = nbt.getShort("jupiter_rep");
+        short rep = nbt.getShort("zeus_rep");
         if (rep - amount < 0) {
             rep = 0;
         } else {
@@ -88,45 +88,45 @@ public class GodsData {
         }
 
         if (rep == 5) {
-            player.sendMessage(Text.literal("Jupiter dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
+            player.sendMessage(Text.literal("Zeus dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), player.getBlockPos(), SpawnReason.EVENT);
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT, SoundCategory.NEUTRAL, 1f, 1f);
         } else {
-            player.sendMessage(Text.of("Respect from Jupiter: " + rep), true);
+            player.sendMessage(Text.of("Respect from Zeus: " + rep), true);
         }
 
-        nbt.putShort("jupiter_rep", rep);
+        nbt.putShort("zeus_rep", rep);
         return rep;
     }
 
     public static short getRepNeptune(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("neptune_rep");
+        return nbt.getShort("poseidon_rep");
     }
 
     public static short getRepJupiter(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("jupiter_rep");
+        return nbt.getShort("zeus_rep");
     }
 
-    public static boolean isNeptuneHate(PlayerEntity player) {
+    public static boolean isPoseidonHate(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("neptune_rep") <= 5;
+        return nbt.getShort("poseidon_rep") <= 5;
     }
 
-    public static boolean isJupiterHate(PlayerEntity player) {
+    public static boolean isZeusHate(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("jupiter_rep") <= 5;
+        return nbt.getShort("zeus_rep") <= 5;
     }
 
-    public static boolean isNeptuneLike(PlayerEntity player) {
+    public static boolean isPoseidonLike(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("neptune_rep") >= 12;
+        return nbt.getShort("poseidon_rep") >= 12;
     }
 
-    public static boolean isJupiterLike(PlayerEntity player) {
+    public static boolean isZeusLike(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("jupiter_rep") >= 12;
+        return nbt.getShort("zeus_rep") >= 12;
     }
 }

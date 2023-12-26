@@ -10,17 +10,17 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class NeptuneTridentEntity extends PersistentProjectileEntity {
+public class PoseidonTridentEntity extends PersistentProjectileEntity {
     private static final ItemStack DEFAULT_STACK = new ItemStack(Items.TRIDENT);
     private boolean dealtDamage;
     public int returnTimer;
 
-    public NeptuneTridentEntity(EntityType<? extends NeptuneTridentEntity> type, World world) {
+    public PoseidonTridentEntity(EntityType<? extends PoseidonTridentEntity> type, World world) {
         super(type, world, DEFAULT_STACK);
     }
 
-    public NeptuneTridentEntity(LivingEntity owner, World world, ItemStack stack) {
-        super(EntitiesRegistry.NEPTUNE_TRIDENT_ENTITY, owner, world, stack);
+    public PoseidonTridentEntity(LivingEntity owner, World world, ItemStack stack) {
+        super(EntitiesRegistry.POSEIDON_TRIDENT_ENTITY, owner, world, stack);
     }
 
     @Override

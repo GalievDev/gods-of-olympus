@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterials;
 
-public class SkySword extends SwordItem {
-    public SkySword() {
+public class ZeusLightning extends SwordItem {
+    public ZeusLightning() {
         super(ToolMaterials.NETHERITE, 5, 0.6f, new FabricItemSettings().fireproof().maxDamage(999999));
     }
 

@@ -1,8 +1,8 @@
 package dev.galiev.gofo.registry;
 
 import dev.galiev.gofo.GodsOfOlympus;
-import dev.galiev.gofo.item.NeptuneTrident;
-import dev.galiev.gofo.item.SkySword;
+import dev.galiev.gofo.item.PoseidonTrident;
+import dev.galiev.gofo.item.ZeusLightning;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -13,8 +13,8 @@ import static dev.galiev.gofo.GodsOfOlympus.MOD_ID;
 
 public class ItemsRegistry {
 
-    public static final Item SKY_SWORD = registerItem("sky_sword", new SkySword());
-    public static final Item NEPTUNE_TRIDENT = registerItem("neptune_trident", new NeptuneTrident());
+    public static final Item ZEUS_LIGHTNING = registerItem("zeus_lightning", new ZeusLightning());
+    public static final Item POSEIDON_TRIDENT = registerItem("poseidon_trident", new PoseidonTrident());
 
     private static Item registerItem(String name, Item item) {
         ItemGroupEvents.modifyEntriesEvent(GodsOfOlympus.GODS_OF_OLYMPUS).register(entries -> entries.add(item));

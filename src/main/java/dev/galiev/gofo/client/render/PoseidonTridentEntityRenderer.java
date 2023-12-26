@@ -1,6 +1,6 @@
 package dev.galiev.gofo.client.render;
 
-import dev.galiev.gofo.entity.NeptuneTridentEntity;
+import dev.galiev.gofo.entity.PoseidonTridentEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -15,17 +15,17 @@ import net.minecraft.util.math.RotationAxis;
 
 import static dev.galiev.gofo.GodsOfOlympus.MOD_ID;
 
-public class NeptuneTridentEntityRenderer extends EntityRenderer<NeptuneTridentEntity> {
+public class PoseidonTridentEntityRenderer extends EntityRenderer<PoseidonTridentEntity> {
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/neptune_trident.png");
 
-    public NeptuneTridentEntityRenderer(EntityRendererFactory.Context ctx) {
+    public PoseidonTridentEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }
 
     private TridentEntityModel model = new TridentEntityModel(TridentEntityModel.getTexturedModelData().createModel());
 
     @Override
-    public void render(NeptuneTridentEntity tridentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+    public void render(PoseidonTridentEntity tridentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
         matrixStack.push();
         matrixStack.multiply(
                 RotationAxis.POSITIVE_Y.rotationDegrees(
@@ -59,7 +59,7 @@ public class NeptuneTridentEntityRenderer extends EntityRenderer<NeptuneTridentE
 
 
     @Override
-    public Identifier getTexture(NeptuneTridentEntity entity) {
+    public Identifier getTexture(PoseidonTridentEntity entity) {
         return TEXTURE;
     }
 }

@@ -21,7 +21,7 @@ public abstract class FishingBobberMixin {
     @ModifyVariable(method = "use", at = @At(value = "STORE"), ordinal = 0)
     private List<ItemStack> changeCatch(List<ItemStack> list) {
         var player = this.getPlayerOwner();
-        if (GodsData.isNeptuneHate(player)) {
+        if (GodsData.isPoseidonHate(player)) {
             ObjectArrayList<ItemStack> newList = new ObjectArrayList<>();
             newList.add(new ItemStack(Items.PUFFERFISH));
             return newList;
