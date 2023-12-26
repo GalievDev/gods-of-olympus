@@ -100,33 +100,29 @@ public class GodsData {
         return rep;
     }
 
-    public static short getRepNeptune(PlayerEntity player) {
+    public static short getRepPoseidon(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
         return nbt.getShort("poseidon_rep");
     }
 
-    public static short getRepJupiter(PlayerEntity player) {
+    public static short getRepZeus(PlayerEntity player) {
         NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
         return nbt.getShort("zeus_rep");
     }
 
     public static boolean isPoseidonHate(PlayerEntity player) {
-        NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("poseidon_rep") <= 5;
+        return getRepPoseidon(player) <= 5;
     }
 
     public static boolean isZeusHate(PlayerEntity player) {
-        NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("zeus_rep") <= 5;
+        return getRepZeus(player) <= 5;
     }
 
     public static boolean isPoseidonLike(PlayerEntity player) {
-        NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("poseidon_rep") >= 12;
+        return getRepPoseidon(player) >= 12;
     }
 
     public static boolean isZeusLike(PlayerEntity player) {
-        NbtCompound nbt = ((IPlayerDataSaver) player).getPersistentData();
-        return nbt.getShort("zeus_rep") >= 12;
+        return getRepZeus(player) >= 12;
     }
 }
