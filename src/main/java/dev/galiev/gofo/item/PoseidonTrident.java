@@ -2,10 +2,10 @@ package dev.galiev.gofo.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import dev.galiev.gofo.GodsOfOlympus;
 import dev.galiev.gofo.entity.PoseidonTridentEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
@@ -58,40 +58,39 @@ public class PoseidonTrident extends Item implements Vanishable {
 
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        if (user instanceof PlayerEntity) {
-            if (!user.isSneaking()) {
-                GodsOfOlympus.LOGGER.info("is not sneaking");
+        if (user instanceof PlayerEntity player) {
+            if (!player.isSneaking()) {
                 if (!world.isClient) {
-                    GodsOfOlympus.LOGGER.info("is not client");
-                    stack.damage(1, user, p -> p.sendToolBreakStatus(user.getActiveHand()));
-                    PoseidonTridentEntity tridentEntity = new PoseidonTridentEntity(user, world, stack);
-                    tridentEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 2.5f + (float) 0 * 0.5f, 1.0f);
-                    if (((PlayerEntity) user).getAbilities().creativeMode) {
+                    stack.damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
+                    PoseidonTridentEntity tridentEntity = new PoseidonTridentEntity(player, world, stack);
+                    tridentEntity.setVelocity(player, player.getPitch(), player.getYaw(), 0.0f, 2.5f + (float) 0 * 0.5f, 1.0f);
+                    if (player.getAbilities().creativeMode) {
                         tridentEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
                     }
                     world.spawnEntity(tridentEntity);
                     world.playSoundFromEntity(null, tridentEntity, SoundEvents.ITEM_TRIDENT_THROW, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                    if (!((PlayerEntity) user).getAbilities().creativeMode) {
-                        ((PlayerEntity) user).getInventory().removeOne(stack);
+                    if (!player.getAbilities().creativeMode) {
+                        player.getInventory().removeOne(stack);
                     }
                 }
-                ((PlayerEntity) user).incrementStat(Stats.USED.getOrCreateStat(this));
+                player.incrementStat(Stats.USED.getOrCreateStat(this));
             } else {
-                float f = user.getYaw();
-                float g = user.getPitch();
+                float f = player.getYaw();
+                float g = player.getPitch();
                 float h = -MathHelper.sin(f * ((float) Math.PI / 180)) * MathHelper.cos(g * ((float) Math.PI / 180));
                 float k = -MathHelper.sin(g * ((float) Math.PI / 180));
                 float l = MathHelper.cos(f * ((float) Math.PI / 180)) * MathHelper.cos(g * ((float) Math.PI / 180));
                 float m = MathHelper.sqrt(h * h + k * k + l * l);
                 float n = 5.0f * ((1.0f + (float) 2) / 4.0f);
-                user.addVelocity(h *= n / m, k *= n / m, l *= n / m);
-                ((PlayerEntity) user).useRiptide(20);
-                if (user.isOnGround()) {
+                player.addVelocity(h *= n / m, k *= n / m, l *= n / m);
+                player.useRiptide(20);
+                world.setBlockState(player.getBlockPos(), Blocks.WATER.getDefaultState());
+                if (player.isOnGround()) {
                     float o = 1.1999999f;
-                    user.move(MovementType.SELF, new Vec3d(0.0, o, 0.0));
+                    player.move(MovementType.SELF, new Vec3d(0.0, o, 0.0));
                 }
                 SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_RIPTIDE_2;
-                world.playSoundFromEntity(null, user, soundEvent, SoundCategory.PLAYERS, 1.0f, 1.0f);
+                world.playSoundFromEntity(null, player, soundEvent, SoundCategory.PLAYERS, 1.0f, 1.0f);
             }
         }
     }
