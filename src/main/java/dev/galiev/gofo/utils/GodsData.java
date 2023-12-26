@@ -28,7 +28,7 @@ public class GodsData {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1000));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
         } else {
-            player.sendMessage(Text.of("Poseidon from Neptune: " + rep), true);
+            player.sendMessage(Text.of("Respect from Poseidon: " + rep), true);
         }
 
         nbt.putShort("poseidon_rep", rep);
