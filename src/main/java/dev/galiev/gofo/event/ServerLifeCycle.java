@@ -40,7 +40,7 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
                     }
                 }
             }
-            if (counter == 1000) {
+            if (counter == delay) {
                 int chance = RANDOM.nextInt(1, 100);
                 //Poseidon Events
                 if (!nPunished) {
@@ -53,7 +53,7 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
                     }
                     if (GodsData.isPoseidonLike(player)) {
                         if (chance <= 49) {
-                            player.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 10000));
+                            player.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 10000, 4));
                         } else {
                             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 10000));
                         }
