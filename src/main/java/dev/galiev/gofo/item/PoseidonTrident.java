@@ -5,7 +5,6 @@ import com.google.common.collect.Multimap;
 import dev.galiev.gofo.entity.PoseidonTridentEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
@@ -84,7 +83,6 @@ public class PoseidonTrident extends Item implements Vanishable {
                 float n = 5.0f * ((1.0f + (float) 2) / 4.0f);
                 player.addVelocity(h *= n / m, k *= n / m, l *= n / m);
                 player.useRiptide(20);
-                world.setBlockState(player.getBlockPos(), Blocks.WATER.getDefaultState());
                 if (player.isOnGround()) {
                     float o = 1.1999999f;
                     player.move(MovementType.SELF, new Vec3d(0.0, o, 0.0));
