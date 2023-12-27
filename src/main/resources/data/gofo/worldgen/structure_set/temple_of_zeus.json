@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "gofo:temple_of_zeus",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1997396712,
+
+    "spacing": 20,
+
+    "separation": 6,
+
+    "type": "minecraft:random_spread"
+  }
+}
