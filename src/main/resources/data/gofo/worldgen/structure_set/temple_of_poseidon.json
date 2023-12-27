@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "gofo:temple_of_poseidon",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1987336511,
+    "spacing": 32,
+    "spread_type": "triangular",
+    "separation": 5,
+    "type": "minecraft:random_spread"
+  }
+}
