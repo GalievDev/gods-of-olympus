@@ -1,6 +1,7 @@
 package dev.galiev.gofo.registry;
 
 import dev.galiev.gofo.GodsOfOlympus;
+import dev.galiev.gofo.block.PoseidonStatue;
 import dev.galiev.gofo.block.ZeusStatue;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -19,6 +20,8 @@ public class BlocksRegistry {
     
     public static final Block ZEUS_STATUE = registerBlock("zeus_statue",
             new ZeusStatue(), GodsOfOlympus.GODS_OF_OLYMPUS);
+    public static final Block POSEIDON_STATUE = registerBlock("poseidon_statue",
+            new PoseidonStatue(), GodsOfOlympus.GODS_OF_OLYMPUS);
 
     private static Block registerBlock(String name, Block block, RegistryKey<ItemGroup> group) {
         registerBlockItem(name, block, group);
