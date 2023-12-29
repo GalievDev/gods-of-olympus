@@ -10,7 +10,6 @@ import dev.galiev.gofo.registry.ItemsRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -39,7 +38,7 @@ public class GodsOfOlympus implements ModInitializer {
         Registry.register(
                 Registries.ITEM_GROUP, GODS_OF_OLYMPUS,
                 FabricItemGroup.builder()
-                        .icon(() -> new ItemStack(Blocks.ACACIA_BUTTON))
+                        .icon(() -> new ItemStack(BlocksRegistry.ZEUS_STATUE))
                         .displayName(Text.of("Gods Of Olympus"))
                         .build()
         );

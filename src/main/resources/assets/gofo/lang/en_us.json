@@ -1,0 +1,14 @@
+{
+  "block.gofo.zeus_statue": "Zeus Statue",
+  "block.gofo.poseidon_statue": "Poseidon Statue",
+
+  "item.gofo.poseidon_trident": "Poseidon Trident",
+  "item.gofo.zeus_lightning": "Zeus Lightning",
+
+  "effect.gofo.water_suffocation": "Water Suffocation",
+  "effect.gofo.wrath_of_heaven": "Wrath Of Heaven",
+
+  "itemGroup.gofo.gofo": "Gods Of Olympus",
+
+  "entity.gofo.poseidon_trident_entity": "Poseidon Trident"
+}
