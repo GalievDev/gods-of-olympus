@@ -2,7 +2,8 @@
 	"credit": "Hasti",
 	"texture_size": [128, 128],
 	"textures": {
-		"1": "gofo:block/zeus_statue"
+		"1": "gofo:block/zeus_statue",
+		"particle": "minecraft:block/chiseled_quartz_block"
 	},
 	"elements": [
 		{
