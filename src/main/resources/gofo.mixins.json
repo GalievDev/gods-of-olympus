@@ -12,5 +12,10 @@
     "PlayerManagerMixin"
   ],
   "server": [
+  ],
+  "client": [
+    "ItemRendererAccessor",
+    "ItemRendererMixin",
+    "ModelLoaderMixin"
   ]
 }

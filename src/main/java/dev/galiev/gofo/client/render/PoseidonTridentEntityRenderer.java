@@ -16,7 +16,7 @@ import net.minecraft.util.math.RotationAxis;
 import static dev.galiev.gofo.GodsOfOlympus.MOD_ID;
 
 public class PoseidonTridentEntityRenderer extends EntityRenderer<PoseidonTridentEntity> {
-    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/neptune_trident.png");
+    private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/poseidon_trident.png");
 
     public PoseidonTridentEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
