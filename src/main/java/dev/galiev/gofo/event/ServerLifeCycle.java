@@ -1,5 +1,6 @@
 package dev.galiev.gofo.event;
 
+import dev.galiev.gofo.config.ConfigManager;
 import dev.galiev.gofo.registry.EffectsRegistry;
 import dev.galiev.gofo.utils.GodsData;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -30,7 +31,7 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
         if (counter < 0) counter = 0;
 
         world.getPlayers().forEach(player -> {
-            if (GodsData.isZeusLike(player)) {
+            if (GodsData.isZeusLike(player) && ConfigManager.read().zeusEvents()) {
                 if (world.isRaining()) {
                     for (BlockPos pos : BlockPos.iterate(player.getBlockX() - 100, player.getBlockY(), player.getBlockZ() - 100, player.getBlockX() + 100, player.getBlockY(), player.getBlockZ() + 100)) {
                         var state = world.getBlockState(pos);
@@ -44,41 +45,45 @@ public class ServerLifeCycle implements ServerTickEvents.StartWorldTick {
                 int chance = RANDOM.nextInt(1, 100);
                 //Poseidon Events
                 if (!nPunished) {
-                    if (GodsData.isPoseidonHate(player)) {
-                        if (chance <= 49) {
-                            player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 250));
-                        } else {
-                            spawnGuardians(world, player);
+                    if (ConfigManager.read().poseidonEvents()) {
+                        if (GodsData.isPoseidonHate(player)) {
+                            if (chance <= 49) {
+                                player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 250));
+                            } else {
+                                spawnGuardians(world, player);
+                            }
                         }
-                    }
-                    if (GodsData.isPoseidonLike(player)) {
-                        if (chance <= 49) {
-                            player.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 10000, 4));
-                        } else {
-                            player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 10000));
+                        if (GodsData.isPoseidonLike(player)) {
+                            if (chance <= 49) {
+                                player.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 10000, 4));
+                            } else {
+                                player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 10000));
+                            }
                         }
+                        nPunished = true;
                     }
-                    nPunished = true;
                 }
                 //Zeus Events
                 if (!jPunished) {
-                    if (GodsData.isZeusHate(player)) {
-                        if (chance <= 32) {
-                            createLightning(player);
-                        } else if (chance <= 64) {
-                            setTime(world);
-                        } else {
-                            player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WRATH_OF_HEAVEN, 50));
+                    if (ConfigManager.read().zeusEvents()) {
+                        if (GodsData.isZeusHate(player)) {
+                            if (chance <= 32) {
+                                createLightning(player);
+                            } else if (chance <= 64) {
+                                setTime(world);
+                            } else {
+                                player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WRATH_OF_HEAVEN, 50));
+                            }
                         }
-                    }
-                    if (GodsData.isZeusLike(player)) {
-                        if (chance <= 49) {
-                            world.setWeather(0, 1200, true, false);
-                        } else {
-                            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 10000));
+                        if (GodsData.isZeusLike(player)) {
+                            if (chance <= 49) {
+                                world.setWeather(0, 1200, true, false);
+                            } else {
+                                player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 10000));
+                            }
                         }
+                        jPunished = true;
                     }
-                    jPunished = true;
                 }
                 counter = 0;
             } else counter++;

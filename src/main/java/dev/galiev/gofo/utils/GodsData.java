@@ -1,5 +1,6 @@
 package dev.galiev.gofo.utils;
 
+import dev.galiev.gofo.config.ConfigManager;
 import dev.galiev.gofo.registry.EffectsRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -23,7 +24,7 @@ public class GodsData {
             rep += amount;
         }
 
-        if (rep == 12) {
+        if (rep == 12 && ConfigManager.read().poseidonEvents()) {
             player.sendMessage(Text.literal("Poseidon respects your actions").formatted(Formatting.AQUA), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 1000));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
@@ -44,7 +45,7 @@ public class GodsData {
             rep += amount;
         }
 
-        if (rep == 12) {
+        if (rep == 12 && ConfigManager.read().zeusEvents()) {
             player.sendMessage(Text.literal("Zeus respects your actions").formatted(Formatting.YELLOW), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 1000));
             player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 1f, 1f);
@@ -65,7 +66,7 @@ public class GodsData {
             rep -= amount;
         }
 
-        if (rep == 5) {
+        if (rep == 5 && ConfigManager.read().poseidonEvents()) {
             player.sendMessage(Text.literal("Poseidon dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             player.addStatusEffect(new StatusEffectInstance(EffectsRegistry.WATER_SUFFOCATION, 60));
@@ -87,7 +88,7 @@ public class GodsData {
             rep -= amount;
         }
 
-        if (rep == 5) {
+        if (rep == 5 && ConfigManager.read().zeusEvents()) {
             player.sendMessage(Text.literal("Zeus dissatisfied with your actions").formatted(Formatting.DARK_RED), true);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60));
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) player.getWorld(), player.getBlockPos(), SpawnReason.EVENT);

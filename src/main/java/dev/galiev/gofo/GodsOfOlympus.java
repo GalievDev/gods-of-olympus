@@ -1,5 +1,6 @@
 package dev.galiev.gofo;
 
+import dev.galiev.gofo.config.ConfigManager;
 import dev.galiev.gofo.event.PlayerKilledEntity;
 import dev.galiev.gofo.event.ServerLifeCycle;
 import dev.galiev.gofo.event.custom.PlayerKilledEntityCallback;
@@ -35,6 +36,7 @@ public class GodsOfOlympus implements ModInitializer {
         BlocksRegistry.registerModBlocks();
         EffectsRegistry.registerStatusEffect();
         EntitiesRegistry.registerModEntities();
+        ConfigManager.init();
         Registry.register(
                 Registries.ITEM_GROUP, GODS_OF_OLYMPUS,
                 FabricItemGroup.builder()

@@ -1,5 +1,6 @@
 package dev.galiev.gofo.mixin;
 
+import dev.galiev.gofo.config.ConfigManager;
 import dev.galiev.gofo.utils.GodsData;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +22,7 @@ public abstract class FishingBobberMixin {
     @ModifyVariable(method = "use", at = @At(value = "STORE"), ordinal = 0)
     private List<ItemStack> changeCatch(List<ItemStack> list) {
         var player = this.getPlayerOwner();
-        if (GodsData.isPoseidonHate(player)) {
+        if (GodsData.isPoseidonHate(player) && ConfigManager.read().poseidonEvents()) {
             ObjectArrayList<ItemStack> newList = new ObjectArrayList<>();
             newList.add(new ItemStack(Items.PUFFERFISH));
             return newList;
